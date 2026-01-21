@@ -1,0 +1,108 @@
+:root {
+    --bg-dark: #020617;
+    --bg-light: #f8fafc;
+    --card-dark: rgba(15, 23, 42, 0.65);
+    --card-light: rgba(255, 255, 255, 0.65);
+    --border: rgba(255, 255, 255, 0.2);
+    --text-dark: #f8fafc;
+    --text-light: #020617;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1e293b, #020617);
+    transition: background 0.3s;
+}
+
+body.light {
+    background: radial-gradient(circle at top, #e2e8f0, #f8fafc);
+}
+
+.game-card {
+    width: 90%;
+    max-width: 380px;
+    padding: 24px;
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    background: var(--card-dark);
+    border: 1px solid var(--border);
+    color: var(--text-dark);
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: background 0.3s, color 0.3s;
+}
+
+body.light .game-card {
+    background: var(--card-light);
+    color: var(--text-light);
+}
+
+h1 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.rock { background: #ef4444; }
+.paper { background: #3b82f6; }
+.scissors { background: #22c55e; }
+
+.result {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    animation: fadeIn 0.5s ease;
+}
+
+.win { animation: win 0.6s ease; }
+.lose { animation: lose 0.6s ease; }
+
+@keyframes win {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+@keyframes lose {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-6px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.toggle {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}

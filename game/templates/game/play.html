@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="{% static 'game/css/style.css' %}">
+</head>
+<body>
+
+<div class="game-card {% if result == 'You Win 🎉' %}win{% elif result == 'You Lose 😢' %}lose{% endif %}">
+    <div id="themeToggle" class="toggle">🌙 Toggle Theme</div>
+
+    <h1>✊ ✋ ✌ Rock Paper Scissors</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="buttons">
+            <button class="rock" name="choice" value="rock">Rock</button>
+            <button class="paper" name="choice" value="paper">Paper</button>
+            <button class="scissors" name="choice" value="scissors">Scissors</button>
+        </div>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>{{ result }}</h2>
+        <p>You chose: <strong>{{ user_choice }}</strong></p>
+        <p>Computer chose: <strong>{{ computer_choice }}</strong></p>
+    </div>
+    {% endif %}
+</div>
+
+<script src="{% static 'game/js/game.js' %}"></script>
+</body>
+</html>
